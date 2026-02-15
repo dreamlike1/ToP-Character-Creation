@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToP Character Calculator (Level Up)</title>
+    <title>Standard 5e Character Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .stat-input {
             width: 100%;
             text-align: center;
             font-size: 1.25rem;
-            font-weight: bold;
+            font-weight: 800;
         }
         /* Hide scrollbar for number inputs */
         input[type=number]::-webkit-inner-spin-button, 
@@ -28,129 +28,135 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen p-4 md:p-8">
 
-    <div class="max-w-4xl mx-auto space-y-6">
+    <div class="max-w-5xl mx-auto space-y-6">
         <div class="text-center">
-            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">ToP Character Calculator</h1>
-            <p class="text-slate-500 mt-2">Level Up, Ability Scores, and Skill Calculator</p>
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">5e Character Calculator</h1>
+            <p class="text-slate-500 mt-2">Standard 5e Rules + ToP Races • Level Up Support</p>
         </div>
 
         <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
             
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="md:col-span-1 bg-blue-50 p-3 rounded-lg border border-blue-100">
-                    <label class="block text-xs font-bold text-blue-800 uppercase mb-1">Level</label>
-                    <input type="number" id="charLevel" value="1" min="1" max="20" class="w-full text-3xl font-black text-center text-blue-700 bg-transparent outline-none" onchange="updateForm()">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Level</label>
+                    <input type="number" id="charLevel" value="1" min="1" max="20" class="w-full p-2 bg-blue-50 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-blue-800 font-bold" onchange="updateForm()">
                 </div>
 
-                <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Race</label>
-                        <select id="raceSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateForm()">
-                            <option value="">-- Select --</option>
-                            <option value="human">Human</option>
-                            <option value="elf_core">Elf: Core</option>
-                            <option value="elf_terran">Elf: Terran</option>
-                            <option value="elf_umbral">Elf: Umbral</option>
-                            <option value="dwarf_frost">Dwarf: Frost</option>
-                            <option value="dwarf_cinder">Dwarf: Cinder</option>
-                            <option value="orc_true">Orc: True</option>
-                            <option value="orc_blood">Orc: Blood</option>
-                            <option value="orc_tribal">Orc: Tribal</option>
-                            <option value="isle_tidal">Isleborn: Tidal</option>
-                            <option value="isle_deep">Isleborn: Deep</option>
-                            <option value="isle_swamp">Isleborn: Swamp</option>
-                            <option value="ember_azure">Emberkin: Azure</option>
-                            <option value="ember_ashen">Emberkin: Ashen</option>
-                            <option value="pipling">Pipling</option>
-                            <option value="therakor_ulkor">Therakor: Ulkor</option>
-                            <option value="therakor_grimkor">Therakor: Grimkor</option>
-                        </select>
-                    </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Race</label>
+                    <select id="raceSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-700" onchange="updateForm()">
+                        <option value="">-- Select --</option>
+                        <option value="human">Human (+1 All)</option>
+                        <option value="elf_core">Elf: Core (+2 Dex, +1 Int)</option>
+                        <option value="elf_terran">Elf: Terran (+2 Dex, +1 Wis)</option>
+                        <option value="elf_umbral">Elf: Umbral (+2 Dex, +1 Cha)</option>
+                        <option value="dwarf_frost">Dwarf: Frost (+2 Con, +1 Str)</option>
+                        <option value="dwarf_cinder">Dwarf: Cinder (+2 Con, +1 Str)</option>
+                        <option value="orc_true">Orc: True (+2 Str, +1 Con)</option>
+                        <option value="orc_blood">Orc: Blood (+2 Str, +1 Con)</option>
+                        <option value="orc_tribal">Orc: Tribal (+2 Str, +1 Wis)</option>
+                        <option value="isle_tidal">Isleborn: Tidal (+2 Dex, +1 Con)</option>
+                        <option value="isle_deep">Isleborn: Deep (+2 Dex, +1 Int)</option>
+                        <option value="isle_swamp">Isleborn: Swamp (+2 Dex, +1 Con)</option>
+                        <option value="ember_azure">Emberkin: Azure (+2 Con, +1 Int)</option>
+                        <option value="ember_ashen">Emberkin: Ashen (+2 Con, +1 Str)</option>
+                        <option value="pipling">Pipling (+2 Wis)</option>
+                        <option value="therakor_ulkor">Therakor: Ulkor (+2 Wis, +1 Con)</option>
+                        <option value="therakor_grimkor">Therakor: Grimkor (+2 Wis, +1 Int)</option>
+                    </select>
+                </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Class</label>
-                        <select id="classSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateSkillsUI()">
-                            <option value="">-- Select --</option>
-                            <option value="fighter">Fighter (d10)</option>
-                            <option value="barbarian">Barbarian (d12)</option>
-                            <option value="rogue">Rogue (d8)</option>
-                            <option value="monk">Monk (d8)</option>
-                            <option value="ranger">Ranger (d10)</option>
-                            <option value="paladin">Paladin (d10)</option>
-                            <option value="cleric">Cleric (d8)</option>
-                            <option value="druid">Druid (d8)</option>
-                            <option value="wizard">Wizard (d6)</option>
-                            <option value="sorcerer">Sorcerer (d6)</option>
-                            <option value="warlock">Warlock (d8)</option>
-                            <option value="bard">Bard (d8)</option>
-                            <option value="artificer">Artificer (d8)</option>
-                        </select>
-                    </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Class</label>
+                    <select id="classSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-700" onchange="updateSkillsUI()">
+                        <option value="">-- Select --</option>
+                        <option value="fighter">Fighter (d10, Str/Con)</option>
+                        <option value="barbarian">Barbarian (d12, Str/Con)</option>
+                        <option value="rogue">Rogue (d8, Dex/Int)</option>
+                        <option value="monk">Monk (d8, Str/Dex)</option>
+                        <option value="ranger">Ranger (d10, Str/Dex)</option>
+                        <option value="paladin">Paladin (d10, Wis/Cha)</option>
+                        <option value="cleric">Cleric (d8, Wis/Cha)</option>
+                        <option value="druid">Druid (d8, Int/Wis)</option>
+                        <option value="wizard">Wizard (d6, Int/Wis)</option>
+                        <option value="sorcerer">Sorcerer (d6, Con/Cha)</option>
+                        <option value="warlock">Warlock (d8, Wis/Cha)</option>
+                        <option value="bard">Bard (d8, Dex/Cha)</option>
+                        <option value="artificer">Artificer (d8, Con/Int)</option>
+                    </select>
+                </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Background</label>
-                        <select id="bgSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateSkillsUI()">
-                            <option value="">-- Select --</option>
-                            <option value="veteran">Veteran</option>
-                            <option value="warden">Warden</option>
-                            <option value="shadow">Shadow</option>
-                            <option value="drifter">Drifter</option>
-                            <option value="adept">Adept</option>
-                            <option value="scribe">Scribe</option>
-                            <option value="trader">Trader</option>
-                            <option value="artisan">Artisan</option>
-                            <option value="laborer">Laborer</option>
-                            <option value="hunter">Hunter</option>
-                        </select>
-                    </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Background</label>
+                    <select id="bgSelect" class="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-gray-700" onchange="updateSkillsUI()">
+                        <option value="">-- Select --</option>
+                        <option value="veteran">Veteran (Athletics, Intimidation)</option>
+                        <option value="warden">Warden (Perception, Insight)</option>
+                        <option value="shadow">Shadow (Deception, Stealth)</option>
+                        <option value="drifter">Drifter (Sleight of Hand, Stealth)</option>
+                        <option value="adept">Adept (Insight, Religion)</option>
+                        <option value="scribe">Scribe (History, Investigation)</option>
+                        <option value="trader">Trader (Persuasion, Insight)</option>
+                        <option value="artisan">Artisan (Investigation, Persuasion)</option>
+                        <option value="laborer">Laborer (Athletics, Survival)</option>
+                        <option value="hunter">Hunter (Survival, Perception)</option>
+                    </select>
                 </div>
             </div>
 
             <div class="mb-6">
                 <div class="flex justify-between items-end mb-2 relative">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-3">
                         <h2 class="text-sm font-bold text-gray-800 uppercase tracking-wide">Base Ability Scores</h2>
                         
+                        <button onclick="randomizeArray()" class="text-[10px] bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold py-1 px-2 rounded transition-colors flex items-center gap-1 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            RANDOMIZE ARRAY
+                        </button>
+
                         <div class="tooltip-trigger relative cursor-pointer group">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <div class="tooltip-content invisible opacity-0 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-slate-800 text-white text-xs rounded-lg py-2 px-3 shadow-xl transition-opacity duration-200 z-10 text-center">
+                            <div class="tooltip-content invisible opacity-0 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 bg-slate-800 text-white text-xs rounded-lg py-2 px-3 shadow-xl transition-opacity duration-200 z-10 text-center pointer-events-none">
                                 <div class="font-bold text-blue-200 mb-1">Standard Array</div>
                                 <div class="font-mono text-sm tracking-widest">15, 14, 13, 12, 10, 8</div>
                                 <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-800"></div>
                             </div>
                         </div>
                     </div>
-                    
-                    <span class="text-xs text-gray-400">Update for ASI (Lv 4, 8, etc.)</span>
+                    <span class="text-xs text-gray-400">Input stats before Racial bonuses</span>
                 </div>
 
                 <div class="grid grid-cols-6 gap-2 md:gap-4">
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-red-600 mb-1">STR</label>
-                        <input type="number" id="baseSTR" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-red-500">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-green-600 mb-1">DEX</label>
-                        <input type="number" id="baseDEX" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-green-500">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-orange-600 mb-1">CON</label>
-                        <input type="number" id="baseCON" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-orange-500">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-blue-600 mb-1">INT</label>
-                        <input type="number" id="baseINT" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-purple-600 mb-1">WIS</label>
-                        <input type="number" id="baseWIS" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-purple-500">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <label class="text-[10px] font-bold text-pink-600 mb-1">CHA</label>
-                        <input type="number" id="baseCHA" value="10" class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-pink-500">
-                    </div>
+                    <script>
+                        const stats = [
+                            {id:'str', label:'STR', color:'red'},
+                            {id:'dex', label:'DEX', color:'green'},
+                            {id:'con', label:'CON', color:'orange'},
+                            {id:'int', label:'INT', color:'blue'},
+                            {id:'wis', label:'WIS', color:'purple'},
+                            {id:'cha', label:'CHA', color:'pink'}
+                        ];
+                        stats.forEach(s => {
+                            document.write(`
+                                <div class="flex flex-col items-center group">
+                                    <label class="text-[10px] font-bold text-${s.color}-600 mb-1">${s.label}</label>
+                                    <div class="relative w-full">
+                                        <input type="number" id="base${s.label}" value="10" 
+                                            class="stat-input p-2 border border-gray-200 rounded focus:ring-2 focus:ring-${s.color}-500 transition-colors"
+                                            oninput="updateForm()">
+                                        <div id="bonus${s.label}" class="hidden absolute -top-2 -right-1 bg-${s.color}-100 text-${s.color}-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-${s.color}-200 shadow-sm">
+                                            +0
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    </script>
                 </div>
             </div>
 
@@ -164,7 +170,7 @@
             </div>
 
             <button onclick="computeStats()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-6 rounded-lg transition shadow-lg flex justify-center items-center gap-2">
-                <span>Calculate Stats</span>
+                <span>Calculate Sheet</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                 </svg>
@@ -179,7 +185,7 @@
                     <span id="resLevelBadge" class="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded-full">Lvl 1</span>
                 </div>
                 <div class="p-6 grid grid-cols-3 gap-6 text-center">
-                    <div class="relative">
+                    <div>
                         <div class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Max HP</div>
                         <div id="resHP" class="text-4xl font-black text-red-600">--</div>
                     </div>
@@ -207,16 +213,22 @@
                         <div id="resPassive" class="text-2xl font-bold text-purple-600">--</div>
                     </div>
                 </div>
+
+                <div class="px-6 pb-6">
+                    <button onclick="exportCharacterJSON()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-black py-3 rounded uppercase tracking-widest shadow-md transition">
+                        Export to Spellbook 📤
+                    </button>
+                </div>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg border-t-4 border-blue-500 overflow-hidden">
-                <div class="bg-gray-50 p-3 border-b border-gray-100 font-bold text-gray-800">Ability Modifiers & Saves</div>
+                <div class="bg-gray-50 p-3 border-b border-gray-100 font-bold text-gray-800">Final Scores & Saves</div>
                 <div class="p-0">
                     <table class="w-full text-sm text-left">
                         <thead class="bg-slate-50 text-slate-400 text-xs uppercase">
                             <tr>
                                 <th class="px-4 py-2">Stat</th>
-                                <th class="px-4 py-2">Score</th>
+                                <th class="px-4 py-2">Total</th>
                                 <th class="px-4 py-2">Mod</th>
                                 <th class="px-4 py-2">Save</th>
                             </tr>
@@ -228,7 +240,7 @@
 
             <div class="md:col-span-2 bg-white rounded-xl shadow-lg border-t-4 border-green-500 overflow-hidden">
                 <div class="bg-gray-50 p-3 border-b border-gray-100 font-bold text-gray-800 flex justify-between items-center">
-                    <span>Skills</span>
+                    <span>Skills (Standard 5e)</span>
                     <span class="text-xs font-normal text-gray-500">Green = Proficient (Mod + Prof)</span>
                 </div>
                 <div class="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="skillsListContainer"></div>
@@ -263,10 +275,10 @@
             barbarian: { hd: 12, saves: ['str', 'con'], skillCount: 2, choices: ['Animal Handling', 'Athletics', 'Intimidation', 'Nature', 'Perception', 'Survival'], acType: 'unarmored_barb' },
             rogue: { hd: 8, saves: ['dex', 'int'], skillCount: 4, choices: ['Acrobatics', 'Athletics', 'Deception', 'Insight', 'Intimidation', 'Investigation', 'Perception', 'Performance', 'Persuasion', 'Sleight of Hand', 'Stealth'], acType: 'leather' },
             monk: { hd: 8, saves: ['str', 'dex'], skillCount: 2, choices: ['Acrobatics', 'Athletics', 'History', 'Insight', 'Religion', 'Stealth'], acType: 'unarmored_monk' },
-            ranger: { hd: 10, saves: ['dex', 'wis'], skillCount: 3, choices: ['Animal Handling', 'Athletics', 'Insight', 'Investigation', 'Nature', 'Perception', 'Stealth', 'Survival'], acType: 'scale' },
+            ranger: { hd: 10, saves: ['str', 'dex'], skillCount: 3, choices: ['Animal Handling', 'Athletics', 'Insight', 'Investigation', 'Nature', 'Perception', 'Stealth', 'Survival'], acType: 'scale' },
             paladin: { hd: 10, saves: ['wis', 'cha'], skillCount: 2, choices: ['Athletics', 'Insight', 'Intimidation', 'Medicine', 'Persuasion', 'Religion'], acType: 'chain_shield' },
             cleric: { hd: 8, saves: ['wis', 'cha'], skillCount: 2, choices: ['History', 'Insight', 'Medicine', 'Persuasion', 'Religion'], acType: 'scale_shield' },
-            druid: { hd: 8, saves: ['wis', 'dex'], skillCount: 2, choices: ['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature', 'Perception', 'Religion', 'Survival'], acType: 'leather_shield' },
+            druid: { hd: 8, saves: ['int', 'wis'], skillCount: 2, choices: ['Arcana', 'Animal Handling', 'Insight', 'Medicine', 'Nature', 'Perception', 'Religion', 'Survival'], acType: 'leather_shield' },
             wizard: { hd: 6, saves: ['int', 'wis'], skillCount: 2, choices: ['Arcana', 'History', 'Insight', 'Investigation', 'Medicine', 'Religion'], acType: 'none' },
             sorcerer: { hd: 6, saves: ['con', 'cha'], skillCount: 2, choices: ['Arcana', 'Deception', 'Insight', 'Intimidation', 'Persuasion', 'Religion'], acType: 'none' },
             warlock: { hd: 8, saves: ['wis', 'cha'], skillCount: 2, choices: ['Arcana', 'Deception', 'History', 'Intimidation', 'Investigation', 'Nature', 'Religion'], acType: 'leather' },
@@ -297,7 +309,21 @@
 
         // --- FUNCTIONS ---
 
-        // Calculate Proficiency Bonus based on Standard 5e (assumed for ToP)
+        function randomizeArray() {
+            const standardArray = [15, 14, 13, 12, 10, 8];
+            // Fisher-Yates shuffle
+            for (let i = standardArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [standardArray[i], standardArray[j]] = [standardArray[j], standardArray[i]];
+            }
+            // Assign to inputs
+            abilities.forEach((s, index) => {
+                document.getElementById(`base${s.toUpperCase()}`).value = standardArray[index];
+            });
+            // Update the bonus badges visual
+            updateForm();
+        }
+
         function getProficiencyBonus(level) {
             if (level >= 17) return 6;
             if (level >= 13) return 5;
@@ -306,23 +332,43 @@
             return 2;
         }
 
-        // Calculate HP: Level 1 max, Level 2+ average
         function calculateHP(hitDie, conMod, level) {
             const level1 = hitDie + conMod;
             if (level === 1) return level1;
-            
-            // Average of die: d6=4, d8=5, d10=6, d12=7
             const avg = (hitDie / 2) + 1; 
             const perLevel = avg + conMod;
-            
-            // Ensure you gain at least 1 HP per level up (Standard Rule)
             const actualPerLevel = Math.max(1, perLevel);
-            
             return level1 + ((level - 1) * actualPerLevel);
         }
 
         function updateForm() {
-            // Optional: Auto-update UI if desired when inputs change
+            const raceKey = document.getElementById('raceSelect').value;
+            const race = raceData[raceKey];
+
+            abilities.forEach(a => {
+                const badge = document.getElementById(`bonus${a.toUpperCase()}`);
+                badge.classList.add('hidden');
+            });
+
+            if (race) {
+                if (race.all) {
+                    abilities.forEach(a => {
+                        const badge = document.getElementById(`bonus${a.toUpperCase()}`);
+                        badge.textContent = "+1";
+                        badge.classList.remove('hidden');
+                    });
+                } else {
+                    for (const [key, val] of Object.entries(race)) {
+                        if (key !== 'speed') {
+                            const badge = document.getElementById(`bonus${key.toUpperCase()}`);
+                            if (badge) {
+                                badge.textContent = `+${val}`;
+                                badge.classList.remove('hidden');
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         function updateSkillsUI() {
@@ -365,7 +411,7 @@
                     const label = document.createElement('label');
                     label.textContent = skill;
                     label.className = "text-sm text-gray-700 cursor-pointer";
-                    label.onclick = () => { input.click(); }; // Make text clickable
+                    label.onclick = () => { input.click(); }; 
                     div.appendChild(label);
                 }
                 
@@ -397,14 +443,16 @@
                 return;
             }
 
-            // 1. Calculate Proficiency based on Level
             const profBonus = getProficiencyBonus(level);
-
-            // 2. Base Scores
             let scores = {};
-            abilities.forEach(a => scores[a] = parseInt(document.getElementById(`base${a.toUpperCase()}`).value) || 10);
+            let baseScores = {};
+            
+            abilities.forEach(a => {
+                const val = parseInt(document.getElementById(`base${a.toUpperCase()}`).value) || 10;
+                baseScores[a] = val;
+                scores[a] = val;
+            });
 
-            // 3. Apply Racial Bonuses
             const race = raceData[raceKey];
             if (race.all) {
                 abilities.forEach(a => scores[a] += 1);
@@ -414,25 +462,19 @@
                 }
             }
 
-            // 4. Mods & Saves
             const cls = classData[classKey];
             let mods = {};
             let saves = {};
             abilities.forEach(a => {
                 mods[a] = getModifier(scores[a]);
-                // Save = Mod + Prof (if proficient)
                 saves[a] = mods[a] + (cls.saves.includes(a) ? profBonus : 0);
             });
 
-            // 5. Skills
             const checkedSkills = Array.from(document.querySelectorAll('.class-skill-checkbox:checked')).map(c => c.value);
             const bgSkills = backgroundData[bgKey];
             const proficientSkills = [...new Set([...checkedSkills, ...bgSkills])];
-
-            // 6. Derived Stats
             const hp = calculateHP(cls.hd, mods.con, level);
             
-            // AC
             let ac = 10 + mods.dex;
             let acText = "Unarmored";
             if (cls.acType === 'chain') { ac = 16; acText = "Chain Mail"; }
@@ -447,7 +489,6 @@
             const initiative = mods.dex;
             const passivePerc = 10 + mods.wis + (proficientSkills.includes('Perception') ? profBonus : 0);
 
-            // --- RENDER ---
             document.getElementById('resultsArea').classList.remove('hidden');
             document.getElementById('resLevelBadge').textContent = `Level ${level}`;
             document.getElementById('resHP').textContent = hp;
@@ -458,15 +499,19 @@
             document.getElementById('resInit').textContent = (initiative >= 0 ? "+" : "") + initiative;
             document.getElementById('resPassive').textContent = passivePerc;
 
-            // Score Table
             const tbody = document.getElementById('scoreTableBody');
             tbody.innerHTML = '';
             abilities.forEach(a => {
                 const isSaveProf = cls.saves.includes(a);
+                const raceBonus = scores[a] - baseScores[a];
+                const raceText = raceBonus > 0 ? `<span class="text-[10px] text-blue-500 font-normal">(+${raceBonus})</span>` : '';
+                
                 tbody.innerHTML += `
                     <tr class="hover:bg-slate-50">
                         <td class="px-4 py-2 font-bold uppercase text-slate-600">${a}</td>
-                        <td class="px-4 py-2 font-mono text-slate-800">${scores[a]}</td>
+                        <td class="px-4 py-2 font-mono text-slate-800 font-bold">
+                            ${scores[a]} ${raceText}
+                        </td>
                         <td class="px-4 py-2 font-bold text-blue-600">${mods[a] >= 0 ? '+' : ''}${mods[a]}</td>
                         <td class="px-4 py-2 ${isSaveProf ? 'text-green-600 font-bold' : 'text-gray-400'}">
                             ${saves[a] >= 0 ? '+' : ''}${saves[a]} ${isSaveProf ? '●' : ''}
@@ -475,13 +520,12 @@
                 `;
             });
 
-            // Skills List
             const skillContainer = document.getElementById('skillsListContainer');
             skillContainer.innerHTML = '';
             Object.keys(skillAbilityMap).sort().forEach(skillName => {
                 const attr = skillAbilityMap[skillName];
                 const isProf = proficientSkills.includes(skillName);
-                const bonus = mods[attr] + (isProf ? profBonus : 0); // Uses dynamic Prof Bonus
+                const bonus = mods[attr] + (isProf ? profBonus : 0);
                 
                 skillContainer.innerHTML += `
                     <div class="flex justify-between items-center p-2 rounded border ${isProf ? 'bg-green-50 border-green-200' : 'bg-white border-transparent'}">
@@ -496,6 +540,42 @@
             });
 
             document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function exportCharacterJSON() {
+            const cls = document.getElementById('classSelect').value;
+            if(!cls) return alert("Select a class first!");
+            const level = parseInt(document.getElementById('charLevel').value);
+            
+            // Auto-detect casting mod based on 5e rules
+            let castStat = 'cha';
+            if(['wizard', 'artificer'].includes(cls)) castStat = 'int';
+            if(['cleric', 'druid', 'ranger'].includes(cls)) castStat = 'wis';
+            
+            // Calculate final stat value for the casting stat
+            const race = raceData[document.getElementById('raceSelect').value];
+            let baseVal = parseInt(document.getElementById(`base${castStat.toUpperCase()}`).value);
+            let bonus = 0;
+            if (race) {
+                if (race.all) bonus = 1;
+                else bonus = race[castStat] || 0;
+            }
+            
+            const finalScore = baseVal + bonus;
+            const abilityMod = getModifier(finalScore);
+
+            const data = { 
+                className: cls, 
+                level: level, 
+                abilityMod: abilityMod 
+            };
+            
+            const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; 
+            a.download = 'character_data.json'; 
+            a.click();
         }
     </script>
 </body>
